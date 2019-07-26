@@ -36,6 +36,7 @@ class Student
 
         Student(int roll, string name, string address)
       {
+
           (*this).roll = roll;
           (*this).name = name;
           (*this).address = address;
@@ -46,6 +47,12 @@ class Student
        {
           roll = 0; // since roll has garbage value
           cout<<"Default Constructor, member variables for different objects can't be set"<<endl;
+       }
+
+       //Destructor
+       ~Student()
+       {
+             cout<<"Destructor"<<endl;
        }
 
 
@@ -76,8 +83,12 @@ int main()
    Student thirdStudent(2,"Hemant"); //constructor with two args is called
    thirdStudent.showInfo(); // rollno and name are set
 
-   Student fourthStudent(3,"Shikha","Itahari"); // constructor with three agrs is called
-   fourthStudent.showInfo(); // rollno, name and address all are set
+   Student* fourthStudent = new Student(3,"Shikha","Itahari"); // constructor with three agrs is called
+   fourthStudent->showInfo(); // rollno, name and address all are set
 
+   //objects created by new keyword are not destroyed by destructors
 
+    delete(fourthStudent); //destructor is now called
+
+    return 0;
 }
